@@ -7,7 +7,7 @@ Features:
   - reading object's metadata,
   - downloading objects,
   - uploading objects,
-  - deletetion of objects.
+  - deletion of objects.
 
 To use this library a service-account for GCP is required to authorize all of the operations.
 
@@ -26,24 +26,25 @@ fn main() -> Result<()> {
 
     // Get Bucket's objects list
     let objects_list: gcloud_storage::BucketObjectsList = storage
-        .list_bucket_objects("bucket name")
+        .list_bucket_objects("bucket_name")
         .await?;
 
     // Get object's metadata
     let object_metadata: gcloud_storage::Resource = storage
-        .get_object_metadata("bucket name", "object_name")
+        .get_object_metadata("bucket_name", "object_name")
         .await?;
 
     // Download object to desired destination
-    let destination = PathBuf::from("/tmp/meme.png");
-    storage.get_object("bucket name", "object name", &destination).await?;
+    let destination = PathBuf::from("/tmp/image.png");
+    storage.get_object("bucket_name", "object_name", &destination).await?;
+
 
     // Upload file from filesystem
     let to_upload = PathBuf::from("/tmp/to_upload.tar.gz");
-    storage.upload_object("bucket_name", "object name", &to_upload).await?;
+    storage.upload_object("bucket_name", "object_name", &to_upload).await?;
 
     // Delete object from bucket
-    storage.delete_object("bucket name", "object name").await?;
+    storage.delete_object("bucket_name", "object_name").await?;
 
     Ok(())
 }
