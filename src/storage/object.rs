@@ -22,7 +22,7 @@ impl Object {
 
         let response = client
             .get(format!(
-                "{}/b/{}/o/{}?alt=media",
+                "{}/b/{}/o/{}",
                 GOOGLE_API_BASE_URL, bucket_name, object_name
             ))
             .bearer_auth(token)
